@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <unstid.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
@@ -115,6 +115,12 @@ typedef struct builtin
 /* errors.c */
 void e_puts(char *s);
 int e_putchar(char ch);
+int fd_put(char ch, int f);
+int fd_puts(char *st, int f_d);
 
+/* memory.c */
+int builtin_free(void **pntr);
+
+/*    */
 
 #endif /* SHELL_H */
