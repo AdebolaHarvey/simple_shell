@@ -55,3 +55,20 @@ char *start_with(const char *hstk, const char *ndle)
 	return ((char *)hstk);
 }
 
+/**
+ * str_cat - Concatenates two strings.
+ * @des: Destination buffer.
+ * @sc: Source buffer.
+ * Return: Pointer to destination buffer.
+ */
+char *str_cat(char *des, char *sc)
+{
+	char *r = des;
+
+	while (*des)
+		des++;
+	while (*sc)
+		*des++ = *sc++;
+	*des = *sc;
+	return (r);
+}
