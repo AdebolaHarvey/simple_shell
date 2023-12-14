@@ -60,7 +60,7 @@ typedef struct liststr
  * @agc: Arguement count.
  * @lc: Error count.
  * @error_num: Error code for exit.
- * linc_flag: Line count of input.
+ * @lc_flag: Line count of input.
  * @file_name: Program file name.
  * @envr: Copy of local linked list environment.
  * @envirn: Custom modified copy of environ.
@@ -81,7 +81,7 @@ typedef struct passinfo
 	int agc;
 	unsigned int lc;
 	int error_num;
-	int linc_flag;
+	int lc_flag;
 	char *file_name;
 	list_str *envr;
 	list_str *hist;
@@ -115,7 +115,6 @@ typedef struct builtin
 /* errors.c */
 void e_puts(char *s);
 int e_putchar(char ch);
-
 
 
 #endif /* SHELL_H */
