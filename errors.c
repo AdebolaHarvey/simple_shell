@@ -39,6 +39,43 @@ int e_putchar(char ch)
 	return (1);
 }
 
+/**
+ * fd_put - Writes the ch character to fd.
+ * @ch: The character to print.
+ * @f: File descriptor to write to.
+ * Return: 1 (success).
+ * On error, -1 is returned and errno is set appropriately.
+ */
+int fd_put(char ch, int f)
+{
+	static int indx;
+	static char buff[WRITE_BUFF_SIZE];
 
+	if (ch == BUFF_FLUSH || indx >= WRITE_BUFF_SIZE)
+	{
+		write(f, buff, indx);
+		indx = 0;
+	}
+	if (ch != BUFF_FLUSH)
+		buff[indx++] = ch;
+	return (1);
+}
 
+/**
+ * fd_puts - Prints an input string.
+ * @st: A pointer of the string to be printed.
+ * @f_d: File descriptor to be printed.
+ * Return: Number of string to be printed.
+ */
+int fd_puts(char *st, int f_d)
+{
+	int indx = 0;
 
+	if (!st)
+		return (0);
+	while (*st)
+	{
+		indx += fd_put(*st++, f_d);
+	}
+	return (indx);
+}
