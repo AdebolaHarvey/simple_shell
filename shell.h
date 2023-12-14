@@ -121,6 +121,10 @@ int fd_puts(char *st, int f_d);
 /* memory.c */
 int builtin_free(void **pntr);
 
-/*    */
+/* string.c */
+int str_len(char *str);
+int str_cmp(char *str1, char *str2);
+char *start_with(const char *hstk, const char *ndle);
+
 
 #endif /* SHELL_H */
