@@ -127,5 +127,10 @@ int str_cmp(char *str1, char *str2);
 char *start_with(const char *hstk, const char *ndle);
 char *str_cat(char *des, char *sc);
 
+/* string.c */
+char *str_cpy(char *des, char *src);
+char *str_dupl(const char *strn);
+void put_s(char *strn);
+int put_char(char ch);
 
 #endif /* SHELL_H */
