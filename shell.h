@@ -26,8 +26,8 @@ void my_print(const char *string);
 #define COMD_CHAIN	3
 
 /* to convert number() */
-#define CONVRT_LOWERCASE	1
-#define CONVRT_UNSIGNED		2
+#define CONVERT_LOWERCASE	1
+#define CONVERT_UNSIGNED	2
 
 /* 1 if using system getline() */
 #define GETLINE	0
@@ -132,5 +132,112 @@ char *str_cpy(char *des, char *src);
 char *str_dupl(const char *strn);
 void put_s(char *strn);
 int put_char(char ch);
+
+/* builtin1.c */
+int my_history(infor_t *infor);
+int _unset_alias(infor_t *infor, char *strn);
+int _set_alias(infor_t *info, char *str);
+int _print_alias(list_str *node);
+int _my_alias(infor_t *info);
+
+/* exit.c */
+char *str_ncpy(char *dest, char *src, int n);
+char *str_chr(char *s, char c);
+char *str_chr(char *s, char c);
+
+/* biultin.c */
+int my_exit(infor_t *info);
+int my_cd(info_t *);
+int my_help(info_t *);
+
+/* get1line.c */
+ssize_t _getinput(infor_t *);
+int get_line(infor_t *, char **, size_t *);
+void sigint_Handler(int);
+ssize_t input_buff(info_t *info, char **buf, size_t *len);
+ssize_t read_buff(infor_t *info, char *buf, size_t *i);
+
+/* getinfo.c */
+void _clearinfo(infor_t *);
+void _setinfo(infor_t *, char **);
+void _freeinfo(infor_t *, int);
+
+/* environ.c */
+char *_get_env(infor_t *, const char *);
+int _my_env(infor_t *);
+int _my_setenv(infor_t *);
+int _populate_env_list(infor_t *);
+int populate_envlist(info_t *);
+
+/* getenv.c */
+char **_get_environ(infor_t *);
+int _unset_env(infor_t *, char *);
+int _set_env(infor_t *, char *, char *);
+
+/* history.c */
+char *gethistory_file(infor_t *info);
+int _writehistory(infor_t *info);
+int _read_history(infor_t *info);
+int build_historylist(infor_t *info, char *buf, int linecount);
+int re_number_history(infor_t *info);
+
+/* lists.c */
+list_str *_addnode(list_str **, const char *, int);
+list_str *_addnode_end(list_str **, const char *, int);
+size_t _print_list_str(const list_str *);
+int del_node_at_index(list_str **, unsigned int);
+void _freelist(list_str **);
+
+/* list1.c */
+size_t list_lenght(const list_str *);
+char **list_to_string(list_str *);
+size_t _printlist(const list_str *);
+list_str *node_start_with(list_str *, char *, char);
+ssize_t get_node_indx(list_str *, list_str *);
+
+/* vars.c */
+int _ischain(infor_t *, char *, size_t *);
+void _check_chain(infor_t *, char *, size_t *, size_t, size_t);
+int repl_alias(infor_t *);
+int replace_var(infor_t *);
+int _replacestring(char **, char *);
+
+/* shell_loop.c */
+int h_sh(infor_t *, char **);
+int _findbuiltin(infor_t *);
+void find_comd(infor_t *);
+void fork_comd(infor_t *);
+
+/* parser.c */
+int is_comd(infor_t *, char *);
+char *duplicate_chars(char *, int, int);
+char *_findpath(info_t *, char *, char *);
+
+/* loopsh.c */
+int loop_hsh(char **);
+
+/* tokenizer */
+char **str_tow(char *, char *);
+char **strtow2(char *, char);
+void f_free(char **);
+void *re_alloc(void *, unsigned int, unsigned int);
+
+/* realloc.c */
+char *_mem_set(char *, char, unsigned int);
+
+/* atoi.c */
+int _interactive(infor_t *);
+int _isdelim(char, char *);
+int _is_alpha(int);
+int is_atoi(char *);
+
+/* errors1.c */
+int err_atoi(char *);
+void _printerror(infor_t *, char *);
+int print_dp(int, int);
+char *_convertnumber(long int, int, int);
+void _removecomments(char *);
+
+
 
 #endif /* SHELL_H */

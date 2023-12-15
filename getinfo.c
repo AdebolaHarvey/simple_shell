@@ -1,76 +1,76 @@
 #include "shell.h"
 
 /**
- * clear_info - initializes info_t struct
+ * _clearinfo - initializes info_t struct
  * @info: struct address
  */
 
-void clear_info(info_t *info)
+void _clearinfo(infor_t *info)
 {
-	info->arg = NULL;
-	info->argv = NULL;
+	info->ag = NULL;
+	info->agv = NULL;
 	info->path = NULL;
-	info->argc = 0;
+	info->agc = 0;
 }
 
 /**
- * set_info - initializes info_t struct
+ * _setinfo - initializes info_t struct
  * @info: struct address
  * @av: argument vector
  */
 
-void set_info(info_t *info, char **av)
+void _setinfo(info_t *info, char **av)
 {
 	int i = 0;
 
-	info->fname = av[0];
-	if (info->argv)
+	info->file_name = agv[0];
+	if (info->agv)
 	{
-		info->argv = strtow(info->, " \t");
-		if (!info->argv)
+		info->agv = str_tow(info->, " \t");
+		if (!info->agv)
 		{
-			info->argv = malloc(sizeof(char *) * 2);
-			if (info->argv)
+			info->agv = malloc(sizeof(char *) * 2);
+			if (info->agv)
 			{
-				info->argv[0] = strdup(info->arg);
-				info->argv[1] = NULL;
+				info->agv[0] = str_dupl(info->ag);
+				info->agv[1] = NULL;
 			}
 		}
-		for (i = 0; info->argv && info->argv[i]; i++)
+		for (i = 0; info->agv && info->agv[i]; i++)
 
-			info->argc = i;
+			info->agc = i;
 
-		replace_alias(info);
-		replace_vars(info);
+		repl_alias(info);
+		replace_var(info);
 	}
 }
 
 /**
- * free_info - frees info_t struct fields
+ * _freeinfo - frees info_t struct fields
  * @info: struct address
  * @all: true if freeing all fields
  */
 
-void free_info(info_t *info, int all)
+void _freeinfo(infor_t *info, int all)
 {
-	ffree(info->argv);
-	info->argv = NULL;
+	f_free(info->agv);
+	info->agv = NULL;
 	info->path = NULL;
 	if (all)
 	{
-		if (!info->cmd_buf)
-			free(info->arg);
-		if (info->env)
-			free_list(&(info->env));
+		if (!info->command_buffer)
+			free(info->ag);
+		if (info->envr)
+			free_list(&(info->envr));
 		if (info->history)
-			free_list(&(info->history));
+			free_list(&(info->hist));
 		if (info->alias)
-			free_list(&(info->alias));
-		ffree(info->environ);
-		info-> = NULL;
-		bfree((void **)info->cmd_buf);
-		if (info->readfd > 2)
-			close(info->readfd);
-		_putchar(BUF_FLUSH);
+			_freelist(&(info->alias));
+		ffree(info->envirn);
+		info->envirn = NULL;
+		builtin_free((void **)info->command_buffer);
+		if (info->read_fd > 2)
+			close(info->read_fd);
+		put_char(BUFF_FLUSH);
 	}
 }
