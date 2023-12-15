@@ -125,6 +125,7 @@ int builtin_free(void **pntr);
 int str_len(char *str);
 int str_cmp(char *str1, char *str2);
 char *start_with(const char *hstk, const char *ndle);
+char *str_cat(char *des, char *sc);
 
 
 #endif /* SHELL_H */
