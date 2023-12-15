@@ -7,13 +7,13 @@
  * Return: 1 if interactive mode, 0 otherwise
  */
 
-int interactive(info_t *info)
+int _interactive(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && INFO->READFD <= 2);
 }
 
 /**
- * is_delim - checks if character is a delimeter
+ * _isdelim - checks if character is a delimeter
  * @c: the char to check
  * @delim: the delimeter string
  * Return: 1 if true, 0 if false
@@ -28,7 +28,7 @@ int is_delim(char c, char *delim)
 }
 
 /**
- * _isalpha - checks for alphabetic character
+ * _is_alpha - checks for alphabetic character
  * @c: The character to input
  * Return: 1 if c is alphabetic, 0 otherwise
  */
@@ -42,12 +42,12 @@ int _isalpha(int c)
 }
 
 /**
- * _atoi - converts a string to an integer
+ * is_atoi - converts a string to an integer
  * @s; the string to be converted
  * Return: 0 if no number in string, converted number otherwise
  */
 
-int _atoi(char *s)
+int is_atoi(char *s)
 {
 	int i, sign = 1, flag = 0, output;
 	unsgined int result = 0;
