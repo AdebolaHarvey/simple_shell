@@ -54,7 +54,7 @@ void put_s(char *strn)
 
 	if (!strn)
 		return;
-	while (strn[indx] = '\0')
+	while (strn[indx] != '\0')
 	{
 		put_char(strn[indx]);
 		indx++;

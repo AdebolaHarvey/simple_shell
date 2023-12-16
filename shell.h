@@ -147,14 +147,14 @@ char *str_chr(char *s, char c);
 
 /* biultin.c */
 int my_exit(infor_t *info);
-int my_cd(info_t *);
-int my_help(info_t *);
+int my_cd(infor_t *);
+int my_help(infor_t *);
 
 /* get1line.c */
 ssize_t _getinput(infor_t *);
 int get_line(infor_t *, char **, size_t *);
 void sigint_Handler(int);
-ssize_t input_buff(info_t *info, char **buf, size_t *len);
+ssize_t input_buff(infor_t *info, char **buf, size_t *len);
 ssize_t read_buff(infor_t *info, char *buf, size_t *i);
 
 /* getinfo.c */
@@ -167,7 +167,7 @@ char *_get_env(infor_t *, const char *);
 int _my_env(infor_t *);
 int _my_setenv(infor_t *);
 int _populate_env_list(infor_t *);
-int populate_envlist(info_t *);
+int populate_envlist(infor_t *);
 
 /* getenv.c */
 char **_get_environ(infor_t *);
@@ -211,7 +211,7 @@ void fork_comd(infor_t *);
 /* parser.c */
 int is_comd(infor_t *, char *);
 char *duplicate_chars(char *, int, int);
-char *_findpath(info_t *, char *, char *);
+char *_findpath(infor_t *, char *, char *);
 
 /* loopsh.c */
 int loop_hsh(char **);

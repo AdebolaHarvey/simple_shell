@@ -22,7 +22,7 @@ int h_sh(infor_t *inf, char **agv)
 		if (r != -1)
 		{
 			_setinfo(info, agv);
-			b_retn = _findbuiltin(info);
+			b_rtn = _findbuiltin(info);
 			if (b_rtn == -1)
 				find_comd(info);
 		}
@@ -61,7 +61,7 @@ void find_comd(infor_t *)
 		info->lc++;
 		info->lc_flag = 0;
 	}
-	for (i = 0, k = 0; info->ag[i]: i++)
+	for (i = 0, k = 0; info->ag[i]; i++)
 		if (!_isdelim(info->ag[i], "\t\n"))
 			k++;
 	if (!k)
@@ -102,7 +102,7 @@ void fork_comd(infor_t *info)
 	}
 	if (child_pid == 0)
 	{
-		if (excve(info->path, info->agv, _get_environ(info)) == -1)
+		if (execve(info->path, info->agv, _get_environ(info)) == -1)
 		{
 			_freeinfo(info, 1);
 			if (errno == EACCES)
@@ -113,7 +113,7 @@ void fork_comd(infor_t *info)
 	}
 	else
 	{
-		wait(&(info->sta));
+		wait(&(info->stat));
 		if (WIFEXITED(info->stat))
 		{
 			info->stat = WEXITSTATUS(info->stat);
